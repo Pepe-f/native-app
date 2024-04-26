@@ -1,6 +1,6 @@
-import { Animated, Dimensions, StyleSheet, Text } from "react-native";
-import { Colors, Fonts } from "../../const/tokens";
-import { useEffect, useState } from "react";
+import { Animated, Dimensions, StyleSheet, Text } from 'react-native';
+import { Colors, Fonts } from '../../const/tokens';
+import { useEffect, useState } from 'react';
 
 interface ErrorNotificationProps {
   error?: string;
@@ -53,8 +53,8 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 
 const styles = StyleSheet.create({
   error: {
-    position: "absolute",
-    width: Dimensions.get("screen").width,
+    position: 'absolute',
+    width: Dimensions.get('screen').width,
     backgroundColor: Colors.red,
     padding: 15,
     top: 50,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   errorText: {
     fontSize: Fonts.f16,
     color: Colors.white,
-    textAlign: "center",
+    textAlign: 'center',
     // fontFamily: Fonts.regular,
   },
 });
