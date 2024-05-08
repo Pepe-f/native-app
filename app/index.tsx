@@ -4,6 +4,7 @@ import { Colors, Gaps } from '../shared/const/tokens';
 import { Button } from '../shared/ui/Button/Button';
 import { useState } from 'react';
 import { ErrorNotification } from '../shared/ui/ErrorNotification/ErrorNotification';
+import { Link } from 'expo-router';
 
 export default function App() {
   const [error, setError] = useState<string | undefined>();
@@ -22,7 +23,9 @@ export default function App() {
           <Input placeholder="Пароль" isPassword />
           <Button text="Войти" onPress={alert} />
         </View>
-        <Text>Восстановить пароль</Text>
+        <Link href={'/restore'}>
+          <Text>Восстановить пароль</Text>
+        </Link>
       </View>
     </View>
   );
