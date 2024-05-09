@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Input } from '../shared/ui/Input/Input';
 import { Colors, Gaps } from '../shared/const/tokens';
 import { Button } from '../shared/ui/Button/Button';
 import { useState } from 'react';
 import { ErrorNotification } from '../shared/ui/ErrorNotification/ErrorNotification';
-import { Link } from 'expo-router';
+import { CustomLink } from '../shared/ui/CustomLink/CustomLink';
 
 export default function App() {
   const [error, setError] = useState<string | undefined>();
@@ -23,9 +23,7 @@ export default function App() {
           <Input placeholder="Пароль" isPassword />
           <Button text="Войти" onPress={alert} />
         </View>
-        <Link href={'/restore'}>
-          <Text>Восстановить пароль</Text>
-        </Link>
+        <CustomLink href={'/restore'} text="Восстановить пароль" />
       </View>
     </View>
   );

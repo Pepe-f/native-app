@@ -19,6 +19,12 @@ export const Radius = {
 };
 
 export const Fonts = {
+  f12: 12,
+  f14: 14,
   f16: 16,
   f18: 18,
+  f20: 20,
+  f21: 21,
+  regular: 'FiraSans-Regular',
+  semibold: 'FiraSans-SemiBold',
 };
