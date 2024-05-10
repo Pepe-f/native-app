@@ -4,3 +4,7 @@ export interface User {
   surname?: string;
   photo?: string;
 }
+
+export interface UserResponse {
+  profile: User;
+}
