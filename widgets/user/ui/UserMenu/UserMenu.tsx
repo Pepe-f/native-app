@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { User } from '../../model/user.model';
+import { User } from '../../../../entities/user/model/user.model';
 import { Colors, Fonts, Gaps } from '../../../../shared/const/tokens';
-import { Avatar } from '../Avatar/Avatar';
+import { Avatar } from '../../../../entities/user/ui/Avatar/Avatar';
 
 export function UserMenu({ user }: { user: User | null }) {
   if (!user) {

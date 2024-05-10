@@ -7,7 +7,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { logoutAtom } from '../../../../entities/auth/model/auth.state';
 import { loadProfileAtom } from '../../../../entities/user/model/user.state';
 import { useEffect } from 'react';
-import { UserMenu } from '../../../../entities/user/ui/UserMenu/UserMenu';
+import { UserMenu } from '../../../user/ui/UserMenu/UserMenu';
 import CoursesIcon from '../../../../assets/icons/courses';
 import ProfileIcon from '../../../../assets/icons/profile';
 import { MenuItem } from '../../../../entities/layout/ui/MenuItem/MenuItem';
