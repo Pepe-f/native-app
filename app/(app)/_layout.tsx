@@ -6,6 +6,7 @@ import { Drawer } from 'expo-router/drawer';
 import { Colors, Fonts } from '../../shared/const/tokens';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
+import { StyleSheet } from 'react-native';
 
 export default function AppLayout() {
   const { access_token } = useAtomValue(authAtom);
@@ -15,7 +16,7 @@ export default function AppLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.wrapper}>
       <Drawer
         drawerContent={(props) => <CustomDrawer {...props} />}
         screenOptions={({ navigation }) => ({
@@ -44,3 +45,9 @@ export default function AppLayout() {
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+});
