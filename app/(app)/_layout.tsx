@@ -5,7 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 import { Colors, Fonts } from '../../shared/const/tokens';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
-import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
+import { CustomDrawer } from '../../widgets/layout/ui/CustomDrawer/CustomDrawer';
 import { StyleSheet } from 'react-native';
 
 export default function AppLayout() {
