@@ -1,4 +1,5 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Orientation } from 'expo-screen-orientation';
 import { Input } from '../shared/ui/Input/Input';
 import { Colors, Gaps } from '../shared/const/tokens';
 import { Button } from '../shared/ui/Button/Button';
@@ -8,11 +9,14 @@ import { CustomLink } from '../shared/ui/CustomLink/CustomLink';
 import { useAtom } from 'jotai';
 import { loginAtom } from '../entities/auth/model/auth.state';
 import { router } from 'expo-router';
+import { useScreenOrientation } from '../shared/hooks/useScreenOrientation';
 
 export default function App() {
   const [localError, setLocalError] = useState<string | undefined>();
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+
+  const orientation = useScreenOrientation();
 
   const [{ access_token, error, isLoading }, login] = useAtom(loginAtom);
 
@@ -48,8 +52,34 @@ export default function App() {
       <View style={styles.content}>
         <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
         <View style={styles.form}>
-          <Input placeholder="Email" onChangeText={setEmail} />
-          <Input placeholder="Пароль" isPassword onChangeText={setPassword} />
+          <View
+            style={{
+              ...styles.inputs,
+              flexDirection: orientation === Orientation.PORTRAIT_UP ? 'column' : 'row',
+            }}
+          >
+            <Input
+              placeholder="Email"
+              onChangeText={setEmail}
+              style={{
+                width:
+                  orientation === Orientation.PORTRAIT_UP
+                    ? 'auto'
+                    : Dimensions.get('window').width / 2 - 16 - 48,
+              }}
+            />
+            <Input
+              placeholder="Пароль"
+              isPassword
+              onChangeText={setPassword}
+              style={{
+                width:
+                  orientation === Orientation.PORTRAIT_UP
+                    ? 'auto'
+                    : Dimensions.get('window').width / 2 - 16 - 48,
+              }}
+            />
+          </View>
           <Button text="Войти" onPress={submit} isLoading={isLoading} />
         </View>
         <CustomLink href={'/restore'} text="Восстановить пароль" />
@@ -74,6 +104,9 @@ const styles = StyleSheet.create({
   },
   form: {
     alignSelf: 'stretch',
+    gap: Gaps.g16,
+  },
+  inputs: {
     gap: Gaps.g16,
   },
 });
