@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Colors } from '../../../../shared/const/tokens';
 import { CustomLink } from '../../../../shared/ui/CustomLink/CustomLink';
 import { CloseDrawer } from '../../../../features/layout/ui/CloseDrawer/CloseDrawer';
@@ -29,7 +29,6 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
     <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
       <View style={styles.content}>
         <CloseDrawer {...props.navigation} />
-        <Text>{profile.profile?.name}</Text>
         <UserMenu user={profile.profile} />
         {MENU.map((menu) => (
           <MenuItem key={menu.path} {...menu} drawer={props} />
