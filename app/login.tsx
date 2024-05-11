@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { Orientation } from 'expo-screen-orientation';
 import { Input } from '../shared/ui/Input/Input';
 import { Colors, Gaps } from '../shared/const/tokens';
@@ -49,7 +49,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ErrorNotification error={localError} />
-      <View style={styles.content}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.content}
+      >
         <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
         <View style={styles.form}>
           <View
@@ -83,7 +86,7 @@ export default function App() {
           <Button text="Войти" onPress={submit} isLoading={isLoading} />
         </View>
         <CustomLink href={'/restore'} text="Восстановить пароль" />
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
