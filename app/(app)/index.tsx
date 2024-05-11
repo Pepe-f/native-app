@@ -1,16 +1,56 @@
-import { View, Text } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { Colors } from '../../shared/const/tokens';
-import { Button } from '../../shared/ui/Button/Button';
-import { useSetAtom } from 'jotai';
-import { logoutAtom } from '../../entities/auth/model/auth.state';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
+import { useEffect } from 'react';
+import { StudentCourseDescription } from '../../entities/course/model/course.model';
+import { CourseCard } from '../../widgets/course/ui/CourseCard/CourseCard';
 
 export default function MyCourses() {
-  const logout = useSetAtom(logoutAtom);
+  const { isLoading, courses } = useAtomValue(courseAtom);
+  const loadCourse = useSetAtom(loadCourseAtom);
+
+  useEffect(() => {
+    loadCourse();
+  }, []);
+
+  const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
+    return (
+      <View style={styles.item}>
+        <CourseCard {...item} />
+      </View>
+    );
+  };
 
   return (
-    <View>
-      <Text style={{ color: Colors.white }}>MyCourses</Text>
-      <Button text="Выход" onPress={logout} />
-    </View>
+    <>
+      {isLoading && (
+        <ActivityIndicator style={styles.activity} size="large" color={Colors.primary} />
+      )}
+      {courses.length > 0 && (
+        <FlatList
+          refreshControl={
+            <RefreshControl
+              tintColor={Colors.primary}
+              titleColor={Colors.primary}
+              refreshing={isLoading}
+              onRefresh={loadCourse}
+            />
+          }
+          data={courses}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderCourse}
+        />
+      )}
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  item: {
+    padding: 20,
+  },
+  activity: {
+    marginTop: 30,
+  },
+});
